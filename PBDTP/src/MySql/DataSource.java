@@ -16,7 +16,7 @@ public class DataSource {
     
     public DataSource() {
         try{
-            hostname = "";
+            hostname = "Localhost";
             port = 3306;
             database = "";
             username = "";

@@ -203,6 +203,7 @@ public class TelaCadastro extends javax.swing.JFrame {
             aluno.setEndereco(campoEndr.getText());
             
             alunoDao.create(aluno);
+            dispose();
         }
         catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Erro ao salvar os dados: " + e.toString());

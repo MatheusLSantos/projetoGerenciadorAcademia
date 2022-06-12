@@ -18,9 +18,9 @@ public class DataSource {
         try{
             hostname = "Localhost";
             port = 3306;
-            database = "";
-            username = "";
-            password = "";
+            database = "bdtpacademia";
+            username = "root";
+            password = "mlss1673";
             
             String url = "jdbc:mysql://"+hostname+":"+port+"/"+database;
             

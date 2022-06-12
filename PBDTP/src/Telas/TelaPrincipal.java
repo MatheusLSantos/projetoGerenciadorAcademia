@@ -5,12 +5,19 @@
 package Telas;
 
 import Classes.Aluno;
+import MySQL.AlunoDAO;
+import MySql.DataSource;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Marcos
  */
 public class TelaPrincipal extends javax.swing.JFrame {
+    
+    DataSource dataSource = new DataSource();
+    AlunoDAO alunoDao = new AlunoDAO(dataSource);
 
     /**
      * Creates new form TelaPrincipal
@@ -29,7 +36,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        CadastarButton = new javax.swing.JButton();
+        read = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaAlunos = new javax.swing.JTable();
+        create = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Academia");
@@ -42,12 +52,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        CadastarButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        CadastarButton.setText("Cadastrar");
-        CadastarButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        CadastarButton.addActionListener(new java.awt.event.ActionListener() {
+        read.setText("Atualizar");
+        read.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadastarButtonActionPerformed(evt);
+                readActionPerformed(evt);
+            }
+        });
+
+        tabelaAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Cpf", "Nome", "DataNas", "Tel", "Email", "Endr"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaAlunos);
+
+        create.setText("Criar");
+        create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createActionPerformed(evt);
             }
         });
 
@@ -55,17 +80,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(653, Short.MAX_VALUE)
-                .addComponent(CadastarButton)
-                .addGap(113, 113, 113))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 323, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(create)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(read)
+                        .addGap(91, 91, 91))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(399, Short.MAX_VALUE)
-                .addComponent(CadastarButton)
-                .addGap(73, 73, 73))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(read)
+                    .addComponent(create))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -79,11 +116,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_formWindowOpened
 
-    private void CadastarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadastarButtonActionPerformed
-
+    private void readActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readActionPerformed
+        read();
         
-    }//GEN-LAST:event_CadastarButtonActionPerformed
+    }//GEN-LAST:event_readActionPerformed
 
+    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
+
+        TelaCadastro telaCadastro = new TelaCadastro();
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_createActionPerformed
+
+    
+    private void read(){
+        
+        ArrayList<Aluno> lista = alunoDao.readAll();
+        DefaultTableModel modelo = (DefaultTableModel)tabelaAlunos.getModel();
+        if (lista != null){
+            modelo.setNumRows(0);
+            for (Aluno a : lista) {
+                modelo.addRow(new Object[]{a.getId(), a.getCpf(), a.getNome(), a.getDataNascimento(), a.getTelefone(), a.getEmail(), a.getEndereco()});
+            }
+        }
+    }
+    
+    private void update(){
+        
+    }
+    
+    private void delete(){
+        
+    }
     
     /**
      * @param args the command line arguments
@@ -121,7 +184,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CadastarButton;
+    private javax.swing.JButton create;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton read;
+    private javax.swing.JTable tabelaAlunos;
     // End of variables declaration//GEN-END:variables
 }

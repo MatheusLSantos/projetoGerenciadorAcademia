@@ -16,11 +16,11 @@ public class DataSource {
     
     public DataSource() {
         try{
-            hostname = "";
+            hostname = "Localhost";
             port = 3306;
-            database = "";
-            username = "";
-            password = "";
+            database = "bdtpacademia";
+            username = "root";
+            password = "mlss1673";
             
             String url = "jdbc:mysql://"+hostname+":"+port+"/"+database;
             
@@ -37,7 +37,7 @@ public class DataSource {
         }
     }
     
-    public Connection getConnection(){
+    public Connection getConnection() {
         return this.connection;
     }
     

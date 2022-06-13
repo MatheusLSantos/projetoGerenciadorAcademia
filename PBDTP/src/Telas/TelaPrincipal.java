@@ -8,7 +8,9 @@ import Classes.Aluno;
 import MySQL.AlunoDAO;
 import MySql.DataSource;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,6 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     DataSource dataSource = new DataSource();
     AlunoDAO alunoDao = new AlunoDAO(dataSource);
+    Aluno aluno = new Aluno();
 
     /**
      * Creates new form TelaPrincipal
@@ -36,10 +39,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        read = new javax.swing.JButton();
+        botaoRead = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaAlunos = new javax.swing.JTable();
-        create = new javax.swing.JButton();
+        botaoCreate = new javax.swing.JButton();
+        botaoDelete = new javax.swing.JButton();
+        botaoUpdate = new javax.swing.JButton();
+        botaoExit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Academia");
@@ -52,10 +58,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        read.setText("Atualizar");
-        read.addActionListener(new java.awt.event.ActionListener() {
+        botaoRead.setText("Atualizar");
+        botaoRead.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                readActionPerformed(evt);
+                botaoReadActionPerformed(evt);
             }
         });
 
@@ -69,10 +75,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabelaAlunos);
 
-        create.setText("Criar");
-        create.addActionListener(new java.awt.event.ActionListener() {
+        botaoCreate.setText("Criar");
+        botaoCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createActionPerformed(evt);
+                botaoCreateActionPerformed(evt);
+            }
+        });
+
+        botaoDelete.setText("Deletar");
+        botaoDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDeleteActionPerformed(evt);
+            }
+        });
+
+        botaoUpdate.setText("Alterar");
+        botaoUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoUpdateActionPerformed(evt);
+            }
+        });
+
+        botaoExit.setText("Sair");
+        botaoExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoExitActionPerformed(evt);
             }
         });
 
@@ -80,29 +107,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoExit)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 323, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(create)
+                        .addComponent(botaoCreate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(read)
-                        .addGap(91, 91, 91))))
+                        .addComponent(botaoRead))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botaoDelete)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botaoUpdate)))
+                .addGap(91, 91, 91))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoDelete)
+                            .addComponent(botaoUpdate))
+                        .addGap(31, 31, 31)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(read)
-                    .addComponent(create))
-                .addContainerGap(333, Short.MAX_VALUE))
+                    .addComponent(botaoRead)
+                    .addComponent(botaoCreate))
+                .addGap(18, 18, 18)
+                .addComponent(botaoExit)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -116,16 +155,39 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
     }//GEN-LAST:event_formWindowOpened
 
-    private void readActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_readActionPerformed
+    private void botaoReadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoReadActionPerformed
         read();
         
-    }//GEN-LAST:event_readActionPerformed
+    }//GEN-LAST:event_botaoReadActionPerformed
 
-    private void createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createActionPerformed
+    private void botaoCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCreateActionPerformed
 
         TelaCadastro telaCadastro = new TelaCadastro();
         telaCadastro.setVisible(true);
-    }//GEN-LAST:event_createActionPerformed
+    }//GEN-LAST:event_botaoCreateActionPerformed
+
+    private void botaoDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDeleteActionPerformed
+        // TODO add your handling code here:
+        String alunoDeletado = selecionarAluno();
+        if (alunoDeletado != null){
+            delete(alunoDeletado);
+        }
+    }//GEN-LAST:event_botaoDeleteActionPerformed
+
+    private void botaoUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoUpdateActionPerformed
+        // TODO add your handling code here:
+        String alunoAlterado = selecionarAluno();
+        if (alunoAlterado != null){
+            TelaEditar telaEditar = new TelaEditar();
+            telaEditar.inicializarCampos(alunoAlterado);
+            telaEditar.setVisible(true);
+        }
+    }//GEN-LAST:event_botaoUpdateActionPerformed
+
+    private void botaoExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_botaoExitActionPerformed
 
     
     private void read(){
@@ -140,12 +202,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }
     
-    private void update(){
-        
+    private String selecionarAluno(){
+        DefaultTableModel modelo = (DefaultTableModel)tabelaAlunos.getModel();
+        try{
+            int linha = tabelaAlunos.getSelectedRow();
+            String campo = modelo.getValueAt(linha, 0).toString();
+            return campo;
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Certifique-se de escolher o aluno, Erro ao escolher aluno "+ e);
+            return null;
+        }
     }
     
-    private void delete(){
-        
+    private void delete(String d){
+        int alunoDeletado = Integer.valueOf(d);
+        try{
+            aluno.setId(alunoDeletado);
+            
+            alunoDao.delete(aluno);
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao salvar os dados: " + e.toString());
+        }
     }
     
     /**
@@ -184,10 +263,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton create;
+    private javax.swing.JButton botaoCreate;
+    private javax.swing.JButton botaoDelete;
+    private javax.swing.JButton botaoExit;
+    private javax.swing.JButton botaoRead;
+    private javax.swing.JButton botaoUpdate;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JButton read;
     private javax.swing.JTable tabelaAlunos;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,4 +4,6 @@
 /PBDTP/test
 /PBDTP/build.xml
 /PBDTP/manifest.mf
+/PBDTP/src/MySql/DataSource
+.gitignore
 

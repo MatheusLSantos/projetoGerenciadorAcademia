@@ -78,5 +78,40 @@ public class AlunoDAO {
        }
     }
     
+    public void update(Aluno c) throws SQLException{
+        String SQL = "update aluno set cpf= ?, nome= ?, dataNascimento= ?, telefone= ?, email= ?, endereco= ? where id= ?";
+        PreparedStatement ps = dataSource.getConnection().prepareStatement(SQL);
+        try{
+            ps.setString(1, c.getCpf());
+            ps.setString(2, c.getNome());
+            ps.setString(3, c.getDataNascimento());
+            ps.setString(4, c.getTelefone());
+            ps.setString(5, c.getEmail());
+            ps.setString(6, c.getEndereco());
+            ps.setInt(7, c.getId());
+            
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showConfirmDialog(null, "Erro ao alterar os dados "+e.toString());
+        }
+        finally{
+           ps.close();
+        }
+    }
     
+    public void delete(Aluno c) throws SQLException{
+        String SQL = "delete from aluno where id= ?";
+        PreparedStatement ps = dataSource.getConnection().prepareStatement(SQL);
+        
+        try{
+            ps.setInt(1, c.getId());
+            
+            ps.executeUpdate();
+        }catch(SQLException e){
+            JOptionPane.showConfirmDialog(null, "Erro ao Excluir dados "+e.toString());
+        }
+        finally{
+           ps.close();
+        }
+    }
 }

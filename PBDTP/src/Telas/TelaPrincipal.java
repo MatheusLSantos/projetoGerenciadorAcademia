@@ -39,13 +39,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        botaoRead = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaAlunos = new javax.swing.JTable();
         botaoCreate = new javax.swing.JButton();
         botaoDelete = new javax.swing.JButton();
         botaoUpdate = new javax.swing.JButton();
         botaoExit = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        botaoDetalhe = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaAlunos = new javax.swing.JTable();
+        botaoRead = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gerenciador de Academia");
@@ -58,22 +61,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().setLayout(null);
 
-        botaoRead.setText("Atualizar");
-        botaoRead.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoReadActionPerformed(evt);
-            }
-        });
-
-        tabelaAlunos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Id", "Cpf", "Nome", "DataNas", "Tel", "Email", "Endr"
-            }
-        ));
-        jScrollPane2.setViewportView(tabelaAlunos);
+        jPanel1.setOpaque(false);
 
         botaoCreate.setText("Criar");
         botaoCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -103,49 +91,103 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        botaoDetalhe.setText("Detalhes");
+        botaoDetalhe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoDetalheActionPerformed(evt);
+            }
+        });
+
+        tabelaAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id", "Cpf", "Nome", "DataNascimento", "Telefone", "Email", "Endereço"
+            }
+        ));
+        jScrollPane2.setViewportView(tabelaAlunos);
+
+        botaoRead.setText("Atualizar");
+        botaoRead.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoReadActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 697, Short.MAX_VALUE)
+                .addGap(88, 88, 88))
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap(709, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(botaoRead)
+                        .addComponent(botaoDetalhe))
+                    .addContainerGap()))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(botaoRead)
+                    .addGap(18, 18, 18)
+                    .addComponent(botaoDetalhe)
+                    .addContainerGap(232, Short.MAX_VALUE)))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botaoExit)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(botaoCreate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoRead))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(botaoUpdate)
+                        .addGap(18, 18, 18)
                         .addComponent(botaoDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(botaoUpdate)))
-                .addGap(91, 91, 91))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botaoExit))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botaoDelete)
-                            .addComponent(botaoUpdate))
-                        .addGap(31, 31, 31)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoRead)
-                    .addComponent(botaoCreate))
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(botaoExit)
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCreate)
+                    .addComponent(botaoUpdate)
+                    .addComponent(botaoDelete)
+                    .addComponent(botaoExit))
+                .addGap(72, 72, 72))
         );
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 870, 500);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagemdefundo/Design sem nome 2.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jLabel2.setMaximumSize(new java.awt.Dimension(854, 480));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(0, 0, 1121, 1920);
 
         pack();
         setLocationRelativeTo(null);
@@ -189,6 +231,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_botaoExitActionPerformed
 
+    private void botaoDetalheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoDetalheActionPerformed
+        // TODO add your handling code here:
+        
+        if (tabelaAlunos.getSelectedRowCount() != 0){
+            
+            mostrarDetalhes();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Selecione um aluno primeiro.");
+        }
+        
+    }//GEN-LAST:event_botaoDetalheActionPerformed
+
+    private void mostrarDetalhes(){
+        DefaultTableModel modelo = (DefaultTableModel)tabelaAlunos.getModel();
+        int linha = tabelaAlunos.getSelectedRow();
+        if (modelo.getValueAt(linha, 0) != null){
+            String[] detalhes = new String[7];
+            detalhes[0] = modelo.getValueAt(linha, 0).toString();
+            detalhes[1] = modelo.getValueAt(linha, 1).toString();
+            detalhes[2] = modelo.getValueAt(linha, 2).toString();
+            detalhes[3] = modelo.getValueAt(linha, 3).toString();
+            detalhes[4] = modelo.getValueAt(linha, 4).toString();
+            detalhes[5] = modelo.getValueAt(linha, 5).toString();
+            detalhes[6] = modelo.getValueAt(linha, 6).toString();
+            TelaDetalhes telaDetalhes = new TelaDetalhes();
+            telaDetalhes.setVisible(true);
+            telaDetalhes.receberDetalhes(detalhes);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Atualize a lista primeiro");
+        }
+        
+    }
     
     private void read(){
         
@@ -265,10 +341,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoCreate;
     private javax.swing.JButton botaoDelete;
+    private javax.swing.JButton botaoDetalhe;
     private javax.swing.JButton botaoExit;
     private javax.swing.JButton botaoRead;
     private javax.swing.JButton botaoUpdate;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tabelaAlunos;
     // End of variables declaration//GEN-END:variables

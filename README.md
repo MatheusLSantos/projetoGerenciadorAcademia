@@ -1,7 +1,13 @@
 <h1 align="center"> Projeto Gerenciador de Academia </h1>
+
+<p align="center">
+<img src = "to_readme/Gerenciador de academia.png">
+</p>
+
 <p align="center">
 <img src = "http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge" />
 </p>
+
 Description:
 <div>
 <br>
@@ -20,6 +26,11 @@ Description:
 
 ## Application demo:
   https://youtu.be/OeuOUKpEsNY
+  
+  <p align="center">
+    <img src = "to_readme/Aplicacao.gif">
+  </p>
+
   
 <br>
   
@@ -43,4 +54,4 @@ This project need you to install the Connector/J of MySQL:
 
 ## Authors
 
-[<img src="https://avatars.githubusercontent.com/u/107314847?v=4" width=115><br><sub>Matheus Lucas</sub>](https://github.com/MatheusLSantos) <br><hr> [<img src="https://avatars.githubusercontent.com/u/90484922?v=4" width=115><br><sub>Marcos Vinícius</sub>](https://github.com/MatheusFSantos)
+[<img src="https://avatars.githubusercontent.com/u/107314847?v=4" width=115><br><sub>Matheus Lucas</sub>](https://github.com/MatheusLSantos) <br><hr> [<img src="https://avatars.githubusercontent.com/u/90484922?v=4" width=115><br><sub>Marcos Vinícius</sub>](https://github.com/MarcosFSantos)

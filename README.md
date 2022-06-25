@@ -5,7 +5,11 @@
 </p>
 
 <p align="center">
-<img src = "http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge" />
+<img src = "http://img.shields.io/static/v1?label=STATUS&message=FINISHED&color=GREEN&style=for-the-badge" />
+</p>
+
+<p align="center">
+<img src = "http://img.shields.io/github/v/tag/:MatheusLSantos/:projetoGerenciadorAcademia?sort=semver" />
 </p>
 
 Description:
@@ -42,6 +46,16 @@ This project need you to install the Connector/J of MySQL:
 - Open the project with your IDE(Apache NetBeans IDE 12.6 recommended)
 - Open the project properties and go to Libraries
 - Click in the "+" in Classpath and open the .jar file that you extracted
+
+This project need you to import the database in your PC:
+- Open your MySQL Workbench and login your connection
+- In the navigator panel click in Administration
+- In MANAGEMENT click in Data import/Restore
+- Open the folder of your project in projetoGerenciadorAcademia\documents
+- Move the Database.sql to a folder of your choice
+- In MySQL Workbench open the folder you put the Database.sql
+- Select the option Import from Self-Contained File
+- Click Start Import
 
 <br>
 
